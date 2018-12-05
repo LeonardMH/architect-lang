@@ -1,0 +1,42 @@
+# the fn keyword defines a function type, these are first class members of the
+# Architect language
+#
+# the parenthetical defines the accepted function parameters
+#
+# Example 1: Fully type specified, find factorial of 100
+fn[num[i,u,8] -> num[i,u,32]]:factorial = (number){
+    if number < 2 {
+        1
+    } else {
+        number * factorial({number - 1})
+    }
+}
+
+factorial(100)
+
+# Example 2: Derived types
+# factorial: Type derived from (){} being function type syntax
+#
+# number: Type derived from usage, first usage is comparison to int, assumed
+# type will be isN where N is the natural number size for the architecture
+#
+# return type derived in the same manner as number
+fn:factorial = (number){
+    if number < 2 {
+        1
+    } else {
+        number * factorial({number - 1})
+    }
+}
+
+# Example 3: Same thing, done with a lambda, finding factorial of 100
+#
+# the recurse function here is a builtin and calls the calling function with
+# the given parameters, performs tail call optimization if appropriate
+(num[i,u,8]:number){
+    if number < 2 {
+        1
+    } else {
+        number * recurse({number - 1})
+    }
+}(100)

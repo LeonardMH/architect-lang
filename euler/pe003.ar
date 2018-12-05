@@ -1,0 +1,15 @@
+# https://projecteuler.net/problem=3
+#
+# The prime factors of 13195 are 5, 7, 13 and 29.
+#
+# What is the largest prime factor of the number 600851475143 ?
+
+# Prime factor is a prime number that divides the integer exactly
+#
+# Prime number are natural numbes greater than 1 with no positive divisors
+# other than 1 and itself
+
+# from an online calculator I see the correct prime factors are:
+# 71, 839, 1471, and 6857
+# which means the correct answer is 6857
+# so let's figure out how to calculate that

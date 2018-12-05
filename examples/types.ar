@@ -1,0 +1,8 @@
+# Example 1: Create a 2D data point type
+type point = {
+    num[i,u,64]:x,
+    num[i,u,64]:y,
+}
+
+# in use
+location = point(x=0, y=5)

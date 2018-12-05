@@ -1,0 +1,22 @@
+# https://projecteuler.net/problem=1
+#
+# If we list all the natural numbers below 10 that are multiples of 3 or 5, we
+# get 3, 5, 6 and 9. The sum of these multiples is 23.
+#
+# Find the sum of all the multiples of 3 or 5 below 1000.
+from math load accumulate
+from system.console load writeln
+
+fn[num, num -> bool]:mul = (divisor, number){
+    number % divisor == 0
+}
+
+fn[num -> bool]:mul3 = partial(mul, 3)
+fn[num -> bool]:mul5 = partial(mul, 5)
+
+num[u,i,32]:sum = accumulate([3 to 1000 by 1 if { mul3(_) or mul5(_) }])
+
+# the expected and correct output is 233168
+external {
+    writeln(sum)
+}

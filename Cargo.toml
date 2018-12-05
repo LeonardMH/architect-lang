@@ -1,0 +1,12 @@
+[package]
+name = "architect"
+version = "0.0.1"
+authors = ["Michael Leonard <maybeillrememberit@gmail.com>"]
+
+[lib]
+name = "architect"
+path = "src/lib.rs"
+
+[[bin]]
+name = "archc"
+path = "src/bin.rs"

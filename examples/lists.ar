@@ -1,0 +1,29 @@
+# Example 1: Check if item is in a list
+bool:is_in_list = 5 in [0 to 10]
+
+# Example 2: Making a function do it
+fn:in_list = (item, list){
+    item in list
+}
+
+in_list(5, [0 to 10])
+
+# Example 2: Reverse a list (or any container object)
+from container load reverse
+
+reverse([0 to 10]) # returns [10, 9, ..., 1, 0]
+reverse((0, 1, 2)) # returns (2, 1, 0)
+reverse("CASE") # returns "ESAC"
+
+# Example 3: sum items in a list
+from math load accumulate
+
+accumulate([0 to 10]) # returns 55
+accumulate((0 to 5)) # returns 15
+accumulate("CASE") # returns integer sum of each character 284
+
+# Example 4: list creation, comprehension
+my_list = [0 to 10] # [0, 1, ..., 9, 10]
+my_list = [0 to 10 by 2] # [0, 2, ..., 8, 10]
+my_list = [0 to 10 if _ % 2 == 0]
+my_list = [0 to 10 by 1 if _ % 2 == 0] # [0, 2, ..., 8, 10]

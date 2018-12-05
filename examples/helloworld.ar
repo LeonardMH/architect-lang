@@ -1,0 +1,16 @@
+# Example 1: Fully qualified include
+load system
+
+external {
+    system.console.writeln("Hello, world!")
+}
+
+# Example 2: Unqualified include of print function
+#
+# [LANG]: Architect offers no support for the "from module load *"
+# pattern that exists in Python, unqualified includes must be explicit
+from system.console load writeln
+
+external {
+    writeln("Hello, world!")
+}

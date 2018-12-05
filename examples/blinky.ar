@@ -1,0 +1,46 @@
+# A basic implementation of the classic LED blink example
+static num[i,u,32]:LED_REG_ADDRESS = 0x40090016
+
+
+external fn[bool -> bool]:control_led = (turn_on){
+    mut num[i,u,32]:led_reg = 0
+
+    # `direct` built-in dereferences the given number as an address for direct
+    # hardware access (read or write, read when rvalue, write when lvalue)
+    external {
+        led_reg = direct(LED_REG_ADDRESS)
+    }
+
+    # uppercase OR, AND, NOT are bitwise versions
+    if turn_on {
+        led_reg OR 1
+    } else {
+        # the cast builtin acceps a type and a value and attempts to convert
+        # that value to the given type. This is a static process, it does not
+        # have any runtime cost
+        led_reg AND NOT cast(num[i,u,32], 1)
+    }
+
+    external {
+        direct(LED_REG_ADDRESS) = led_reg
+    }
+
+    turn_on
+}
+
+
+@hint(linker+=[entry], compiler+=[noexit])
+fn[None -> None]:main = (){
+    mut num[i,u,8]:counter = 0
+    mut bool:led_on = false
+
+    # every 64th loop this will toggle the LED
+    while true {
+        if counter == 64 {
+            counter = 0
+            led_on = control_led(not led_on)
+        } else {
+            counter += 1
+        }
+    }
+}
